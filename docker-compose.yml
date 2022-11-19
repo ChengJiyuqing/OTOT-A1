@@ -1,15 +1,13 @@
 version: '3'
 
 services:
-    nodejs-app:
+    nodejsapp:
         build:
           context: ./app
-        container_name: nodejsserver
-        hostname: localhost
+        container_name: nodejsapp
+        hostname: nodejsapp
         ports:
             - "3000:8080" 
-        networks:
-            - example-net  
     nginx:
         build:
           context: ./nginx
@@ -17,11 +15,3 @@ services:
         hostname: nginx
         ports:
             - "8080:80" 
-        depends_on:
-            - nodejs-app
-        networks:
-            - example-net
-
-networks:
-  example-net:
-    external: true
